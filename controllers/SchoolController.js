@@ -33,14 +33,7 @@ const ListOfSchool = async (req, res) => {
         const allSchools = await School.find();
         const nearestSchool = allSchools.map((school) => {
             const distanceOfSchool = calculateDistance (userlatitude, userlongitude, school.latitude, school.longitude)
-            return { 
-                id: school._id,
-                name: school.name,
-                address: school.address,
-                latitude: school.latitude,
-                longitude: school.longitude,
-                distanceOfSchool: `${distanceOfSchool.toFixed(2)} km`
-             }
+            return { ...school._doc, distanceOfSchool }
         }).sort((a, b) => a.distanceOfSchool - b.distanceOfSchool)
         return res.status(403).json({ message: "success", nearestSchool })
     } catch (error) {
@@ -49,5 +42,8 @@ const ListOfSchool = async (req, res) => {
     }
 
 }
+
+
+
 
 export {AddSchool, ListOfSchool}
