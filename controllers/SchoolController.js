@@ -43,7 +43,11 @@ const ListOfSchool = async (req, res) => {
 
 }
 
+    const Test = (req,res) => {
+      res.json({message:" welcome to school api"})
+    }
 
 
 
-export {AddSchool, ListOfSchool}
+
+export {AddSchool, ListOfSchool, Test}
